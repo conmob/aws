@@ -7,6 +7,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        AWS_VERSION:
+        - "2.2.42"
+        KUBECTL_VERSION:
+        - "1.22.3"
+        HELM_VERSION:
+        - "3.7.1"
+        TERRAFORM_VERSION:
+        - "0.13.7"
     steps:
     - uses: actions/checkout@v2
       with:
@@ -14,10 +24,10 @@ jobs:
     - name: package
       run: source 10-package.sh
       env:
-        AWS_VERSION: 2.2.42
-        KUBECTL_VERSION: 1.22.3
-        HELM_VERSION: 3.7.1
-        TERRAFORM_VERSION: 0.13.7
+        AWS_VERSION: ${{ matrix.AWS_VERSION }}
+        KUBECTL_VERSION: ${{ matrix.KUBECTL_VERSION }}
+        HELM_VERSION: ${{ matrix.HELM_VERSION }}
+        TERRAFORM_VERSION: ${{ matrix.TERRAFORM_VERSION }}
         CONTAINER_REGISTRY_PUSH: 1
         CONTAINER_REGISTRY_PATH: registry-1.docker.io/conmob/aws
         CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}

@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+export AWS_VERSION="2.2.42"
+export KUBECTL_VERSION="1.18.8"
+export HELM_VERSION="3.5.0"
+export TERRAFORM_VERSION="1.29.2"
+
+export CONTAINER_REGISTRY_PUSH=1
+export CONTAINER_REGISTRY_PATH="registry-1.docker.io/conmob/aws"
+export CONTAINER_REGISTRY_USERNAME="xxx"
+export CONTAINER_REGISTRY_PASSWORD="xxx"

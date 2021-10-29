@@ -1,0 +1,24 @@
+name: ci-main
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: package
+      run: source 10-package.sh
+      env:
+        AWS_VERSION: 2.2.42
+        KUBECTL_VERSION: 1.18.8
+        HELM_VERSION: 3.5.0
+        TERRAFORM_VERSION: 1.29.2
+        CONTAINER_REGISTRY_PUSH: 1
+        CONTAINER_REGISTRY_PATH: registry-1.docker.io/conmob/aws
+        CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
+        CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}

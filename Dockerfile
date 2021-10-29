@@ -1,9 +1,9 @@
+FROM amazonlinux:2 AS installer
+
 ARG AWS_VERSION="2.2.42"
 ARG KUBECTL_VERSION="1.22.3"
 ARG HELM_VERSION="3.7.1"
 ARG TERRAFORM_VERSION="0.13.7"
-
-FROM amazonlinux:2 AS installer
 
 RUN yum update -y \
 && yum install -y curl unzip

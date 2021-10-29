@@ -1,7 +1,7 @@
-ARG AWS_VERSION="2.2.47"
+ARG AWS_VERSION="2.2.42"
 ARG KUBECTL_VERSION="1.22.3"
 ARG HELM_VERSION="3.7.1"
-ARG TERRAFORM_VERSION="0.13.6"
+ARG TERRAFORM_VERSION="0.13.7"
 
 FROM amazonlinux:2 AS installer
 
@@ -28,7 +28,7 @@ ENV TERRAFORM_VERSION ${TERRAFORM_VERSION}
 RUN curl -L https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform.zip \
 && unzip terraform.zip \
 && mv terraform /usr/local/bin/terraform \
-&& chmod +x /usr/local/bin/terraform \
+&& chmod +x /usr/local/bin/terraform
 
 FROM amazonlinux:2 AS runtime
 COPY --from=installer /usr/local/aws-cli/ /usr/local/aws-cli/
